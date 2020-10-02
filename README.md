@@ -16,5 +16,7 @@ Provision:
   1. terraform init
   2. terraform plan
   3. terraform apply -auto-approve
+
+
 Destroy:
   1. terraform destroy -auto-approve
