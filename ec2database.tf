@@ -4,7 +4,7 @@ resource "aws_key_pair" "keypair1" {
 }
 
 data "template_file" "phpconfig" {
-  template = file("files/conf.wp-config.php")
+  template = file("dbfolder/conf.wp-config.php")
 
   vars = {
     db_port = aws_db_instance.mysql.port
@@ -43,14 +43,14 @@ resource "aws_instance" "ec2" {
   subnet_id                   = aws_subnet.public1.id
   associate_public_ip_address = true
 
-  user_data = file("files/userdata.sh")
+  user_data = file("dbfolder/userdata.sh")
 
   tags = {
     Name = "EC2 Instance"
   }
 
   provisioner "file" {
-    source      = "files/userdata.sh"
+    source      = "dbfolder/userdata.sh"
     destination = "/tmp/userdata.sh"
 
     connection {
